@@ -1,0 +1,98 @@
+﻿<prismMvvm:SessionStateAwarePage
+    xmlns:prismMvvm="using:Prism.Windows.Mvvm"
+    x:Class="IAF.Views.HouseDetailsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    prismMvvm:ViewModelLocator.AutoWireViewModel="True"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="using:IAF.Models"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid ColumnSpacing="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <ScrollViewer Grid.Column="0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock VerticalAlignment="Center" FontWeight="Medium" Margin="10,0,0,0" Grid.Row="0" Text="Name"/>
+                <TextBlock VerticalAlignment="Center" Grid.Row="1" Text="{Binding DetailedHouse.Name}"/>
+                <TextBlock VerticalAlignment="Center" FontWeight="Medium" Margin="10,0,0,0" Grid.Row="2" Text="Region"/>
+                <TextBlock VerticalAlignment="Center" Grid.Row="3" Text="{Binding DetailedHouse.Region}"/>
+                <TextBlock VerticalAlignment="Center" FontWeight="Medium" Margin="10,0,0,0" Grid.Row="4" TextWrapping="WrapWholeWords" Text="Coat of Armes"/>
+                <TextBlock VerticalAlignment="Center" Grid.Row="5" Text="{Binding DetailedHouse.CoatOfArms}"/>
+                <TextBlock VerticalAlignment="Center" FontWeight="Medium" Margin="10,0,0,0" Grid.Column="0" Grid.Row="6" Text="Words"/>
+                <TextBlock VerticalAlignment="Center" Grid.Row="7" TextWrapping="WrapWholeWords" Text="{Binding DetailedHouse.Words}"/>
+                <TextBlock VerticalAlignment="Center" FontWeight="Medium" Margin="10,0,0,0" Grid.Row="8" Text="Titles"/>
+                <ListView Grid.Row="9" ItemsSource="{Binding DetailedHouse.Titles}"/>
+                <TextBlock VerticalAlignment="Center" FontWeight="Medium" Margin="10,0,0,0" Grid.Row="10" Text="Seats"/>
+                <ListView Grid.Row="11" ItemsSource="{Binding DetailedHouse.Seats}"/>
+            </Grid>
+        </ScrollViewer>
+
+        <ScrollViewer Grid.Column="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Button Background="White" Click="{x:Bind ConcreteDataContext.CurrentLord_Click}" Grid.Row="1">
+                    <TextBlock FontWeight="Medium" Text="CurrentLord"/>
+                </Button>
+                <TextBlock VerticalAlignment="Center" FontWeight="Medium" Margin="10,0,0,0" Grid.Row="2" Text="Founded"/>
+                <TextBlock Grid.Row="3" VerticalAlignment="Center" Text="{Binding DetailedHouse.Founded}"/>
+                <TextBlock VerticalAlignment="Center" FontWeight="Medium" Margin="10,0,0,0" Grid.Row="4" Text="Died Out"/>
+                <TextBlock Grid.Row="5" VerticalAlignment="Center" Text="{Binding DetailedHouse.DiedOut}"/>
+                <TextBlock VerticalAlignment="Center" FontWeight="Medium" Margin="10,0,0,0" Grid.Row="6" Text="Ancestral Weapons"/>
+                <ListView Grid.Row="7" ItemsSource="{Binding DetailedHouse.AncestralWeapons}"/>
+                <TextBlock VerticalAlignment="Center" FontWeight="Medium" Margin="10,0,0,0" Grid.Row="8" Text="Cadet Branches"/>
+                <ScrollViewer Grid.Row="9">
+                    <ListView ItemClick="{x:Bind ConcreteDataContext.CadetClick}" ItemsSource="{Binding Cadets}" IsItemClickEnabled="True">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="models:House">
+                                <TextBlock Text="{Binding Name, Mode=OneWay}"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </ScrollViewer>
+                <TextBlock VerticalAlignment="Center" FontWeight="Medium" Margin="10,0,0,0" Grid.Row="10" Text="Sworn Members"/>
+                <ScrollViewer Grid.Row="11">
+                    <ListView ItemsSource="{Binding GOTSwornHouseMembers}" IsItemClickEnabled="True" ItemClick="{x:Bind ConcreteDataContext.SwornMemebersListView_ItemClick}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="models:Character">
+                                <TextBlock Text="{Binding Name, Mode=OneWay}"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </ScrollViewer>
+            </Grid>
+        </ScrollViewer>
+
+    </Grid>
+</prismMvvm:SessionStateAwarePage>
